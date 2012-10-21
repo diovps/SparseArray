@@ -6,6 +6,8 @@ Node<T>::Node(T val,int row, int col){
 	value = val;
 	rowNum = row;
 	colNum = col;
+	nextRow = 0;
+	nextCol = 0;
 }
 
 template <typename T>
@@ -29,13 +31,13 @@ Node<T>*& Node<T>::getNextCol(){
 }
 
 template <typename T>
-void Node<T>::setNextRow(Node<T>& n){
-
+void Node<T>::setNextRow(Node<T> *n){
+	nextRow = n;
 }
 
 template <typename T>
-void Node<T>::setNextCol(Node<T>& n){
-	
+void Node<T>::setNextCol(Node<T> *n){
+	nextCol = n;
 }
 
 template <typename T>
