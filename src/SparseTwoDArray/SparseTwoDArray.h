@@ -1,10 +1,16 @@
 #ifndef __SPARSETWODARRAY_H__
 #define __SPARSETWODARRAY_H__
 
+#include "Node.h"
+
 template <typename T>
 class SparseTwoDArray{
 	private:
-		T** theArray;
+		Node<T>** rows;
+		Node<T>** cols;
+		int numRows;
+		int numCols;
+		T defaultVal;
 	public:
 		SparseTwoDArray<T>(int r, int c, T def);
 		~SparseTwoDArray<T>();
