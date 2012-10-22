@@ -50,6 +50,11 @@ int Node<T>::getRowNum(){
 	return rowNum;
 }
 
+template <typename T>
+void Node<T>::setValue(T val){
+	value = val;
+}
+
 template class Node<int>;
 template class Node<double>;
 template class Node<std::string>;
