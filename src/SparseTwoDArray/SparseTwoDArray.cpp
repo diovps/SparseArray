@@ -28,33 +28,73 @@ SparseTwoDArray<T>::~SparseTwoDArray(){
 
 template<typename T>
 void SparseTwoDArray<T>::insert(int r, int c, T value){
+	
+	//I can't help but overcomplicate everything.
+
 	Node<T>* val= new Node<T>(value,r,c);
 	
-	Node<T>** currCol = &rows[r];
-	Node<T>** currRow = &cols[c];
-	
-	while((*currCol)!=0 && (*currCol)->getNextCol()!=0){
-		Node<T>* temp = (*currCol)->getNextCol();
-		currCol = &temp;
-	}			
-	if((*currCol)==0){
-		rows[r] = val;
+	if(rows[r] == 0){	
+		rows[r] = val;	
 	}else{
-		Node<T>* next = (*currCol)->getNextCol();
-		val->setNextCol(next);
-		(*currCol)->setNextCol(val);
+		Node<T>** currCol = &rows[r];
+		Node<T>** prev = &rows[r];
+
+		while((*currCol)->getNextCol()!=0
+			&&(*currCol)->getNextCol()->getColNum()<c){
+			
+			prev = currCol;
+			Node<T>* temp = (*currCol)->getNextCol();
+			currCol = &temp;
+		}
+		
+		if(rows[r]->getColNum()>val->getColNum()){
+			val->setNextCol(rows[r]);
+			rows[r] = val;
+		}/*else if((*currCol)->getRowNum()==r
+			&&(*currCol)->getColNum()==c){
+
+			Node<T>* next = (*currCol)->getNextCol();
+			(*prev)->setNextCol(val);
+			val->setNextCol(next);
+			delete currCol;
+		
+		}*/else{	
+			Node<T>* next = (*currCol)->getNextCol();
+			val->setNextCol(next);
+			(*currCol)->setNextCol(val);
+		}
 	}
 	
-	while((*currRow)!=0 && (*currRow)->getNextRow()!=0){
-		Node<T>* temp = (*currRow)->getNextRow();
-		currRow = &temp;
-	}			
-	if((*currRow)==0){
+	if(cols[c] == 0){
 		cols[c] = val;
-	}else{
-		Node<T>* next = (*currRow)->getNextRow();
-		val->setNextRow(next);
-		(*currRow)->setNextRow(val);
+	}
+	else{
+		Node<T>** currRow = &cols[c];
+		Node<T>** prev = &cols[c];
+	
+		while((*currRow)->getNextRow()!=0
+			&& (*currRow)->getNextRow()->getRowNum()<r){
+			
+			prev = currRow; 
+			Node<T>* temp = (*currRow)->getNextRow();
+			currRow = &temp;
+		}			
+		
+		if(cols[c]->getRowNum()>val->getRowNum()){
+			val->setNextRow(cols[c]);
+			cols[c] = val;
+		}/*else if((*currRow)->getRowNum() == r
+			&&(*currRow)->getColNum()==c){
+			
+			Node<T>* next = (*currRow)->getNextRow();
+			(*prev)->setNextRow(val);
+			val->setNextRow(next);
+			delete currRow;
+		}*/else{
+			Node<T>* next = (*currRow)->getNextRow();
+			val->setNextRow(next);
+			(*currRow)->setNextRow(val);
+		}
 	}
 }
 
@@ -71,10 +111,10 @@ void SparseTwoDArray<T>::remove(int r, int c){
 
 template<typename T>
 void SparseTwoDArray<T>::print(){
-	Node<T>** curr = &rows[1];
+	Node<T>** curr = &cols[1];
 	while((*curr)!= 0){
 		std::cout << (*curr)->getValue() << std::endl;
-		Node<T>* next = (*curr)->getNextCol();
+		Node<T>* next = (*curr)->getNextRow();
 		curr = &next;
 	}
 }
