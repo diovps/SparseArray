@@ -31,13 +31,13 @@ Node<T>*& Node<T>::getNextCol(){
 }
 
 template <typename T>
-void Node<T>::setNextRow(Node<T> *n){
-	nextRow = n;
+void Node<T>::setNextRow(Node<T>& n){
+	nextRow = &n;
 }
 
 template <typename T>
-void Node<T>::setNextCol(Node<T> *n){
-	nextCol = n;
+void Node<T>::setNextCol(Node<T>& n){
+	nextCol = &n;
 }
 
 template <typename T>

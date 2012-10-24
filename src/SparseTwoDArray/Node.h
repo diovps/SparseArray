@@ -17,8 +17,8 @@ class Node{
 		void setValue(T val);
 		Node*& getNextRow();
 		Node*& getNextCol();
-		void setNextRow(Node<T> *n);
-		void setNextCol(Node<T> *n);
+		void setNextRow(Node<T>& n);
+		void setNextCol(Node<T>& n);
 		int getRowNum();
 		int getColNum();
 
