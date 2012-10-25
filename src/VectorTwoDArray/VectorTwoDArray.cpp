@@ -10,7 +10,7 @@ VectorTwoDArray<T>::VectorTwoDArray(int r, int c, T def){
 	defaultVal = def;
 
 	std::vector<T> columns;
-	columns.resize(r,def);
+	columns.resize(c,def);
 
 	for(int i = 0; i < r; ++i){
 		theArray.push_back(columns);
