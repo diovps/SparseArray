@@ -1,6 +1,7 @@
 #include "ArrayTwoDArray.h"
 #include <iostream>
 #include <assert.h>
+#include <iomanip>
 
 template<typename T>
 ArrayTwoDArray<T>::ArrayTwoDArray(int r, int c, T def){
@@ -49,7 +50,7 @@ T ArrayTwoDArray<T>::access(int r, int c){
 template<typename T>
 void ArrayTwoDArray<T>::remove(int r, int c){
 	assert(r<numRows && r>=0);
-	assert(c<numColls && c>=0);
+	assert(c<numCols && c>=0);
 
 	theArray[r][c] = defaultVal;
 }
@@ -57,6 +58,20 @@ void ArrayTwoDArray<T>::remove(int r, int c){
 template<typename T>
 void ArrayTwoDArray<T>::print(){
 	
+	std::cout << "   ";
+	for(int i=0; i < numCols;++i){
+		std::cout << std::setw(4) << i << " ";
+	}	
+	std::cout << std::endl;
+	
+	for(int i=0; i < numRows;++i){
+		std::cout << i << "  ";
+		for(int j = 0; j < numCols; j++){
+			std::cout << std::left<<"|"<<
+			  std::setw(3)<<std::right<<theArray[i][j] << " ";
+		}
+		std::cout << "|" << std::endl;
+	}
 }
 
 template<typename T>
