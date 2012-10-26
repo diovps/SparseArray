@@ -89,35 +89,26 @@ template<typename T>
 void SparseTwoDArray<T>::remove(int r, int c){
 	
 	Node<T>** currCol = &rows[r];
-	Node<T>** prevCol = &rows[r];
-
-	while(*currCol!=0){
-		if((*currCol)->getColNum()==c && (*currCol)->getRowNum()==r){
-			break;
-		}
-		prevCol = currCol;
+	
+	while(*currCol!=0 && (*currCol)->getColNum()<c){
 		currCol = &((*currCol)->getNextCol());
 	}
 	
-	if(currCol!=0){
-		(*prevCol)->setNextCol(*((*currCol)->getNextCol()));
-	}
-	
 	Node<T>** currRow = &cols[c];
-	Node<T>** prevRow = &cols[c];
 	
-	while(*currRow!=0){
-		if((*currRow)->getColNum()==c && (*currRow)->getRowNum()==r){
-			break;
-		}
-		prevRow = currRow;
+	while(*currRow!=0 && (*currRow)->getRowNum()<r){
 		currRow = &((*currRow)->getNextRow());
 	}
-
-	if(currCol!=0){
-		(*prevRow)->setNextRow(*((*currRow)->getNextRow()));
-		delete (*currRow);
-	}
+	
+	if(*currCol == 0 || *currRow == 0)
+		return;
+	
+	Node<T>* nextCol = (*currCol)->getNextCol();
+	Node<T>* nextRow = (*currRow)->getNextRow();
+	delete (*currRow);
+	(*currRow) = nextRow;
+	(*currCol) = nextCol;
+	
 }
 
 template<typename T>

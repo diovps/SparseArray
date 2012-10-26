@@ -198,15 +198,15 @@ TEST(Sparse,remove){
 	}
 
 	
-	for(int i = 0; i < 8; ++i){
+	for(int i = 0; i < 8; i+=2){
 		da->insert(0,i,(i+.8));
 	}
 
-	for(int i = 0; i < 8; ++i){
+	for(int i = 0; i < 8; i+=2){
 		da->remove(0,i);
 	}
 
-	for(int i = 0; i < 8; ++i){
+	for(int i = 0; i < 8; i+=2){
 		EXPECT_EQ(0,da->access(0,i));
 	}
 	
