@@ -42,7 +42,7 @@ T VectorTwoDArray<T>::access(int r, int c){
 template<typename T>
 void VectorTwoDArray<T>::remove(int r, int c){
 	assert(r>=0 && r<numRows);
-	assert(c>=0 && c<numRows);
+	assert(c>=0 && c<numCols);
 	theArray[r][c] = defaultVal;
 }
 

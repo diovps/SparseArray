@@ -177,6 +177,52 @@ TEST(Sparse,insert){
 	EXPECT_EQ("Bob",sa->access(11,11));
 }
 
+
+TEST(Sparse,remove){	
+	
+	SparseTwoDArray<int>* ia = new SparseTwoDArray<int>(10,7,0);
+	SparseTwoDArray<double>* da = new SparseTwoDArray<double>(4,9,0.0);
+	SparseTwoDArray<std::string>* sa = 
+		new SparseTwoDArray<std::string>(12,12,"null");
+
+	for(int i = 0; i < 9; ++i){
+		ia->insert(i,0,i);
+	}
+
+	for(int i = 0; i < 9; ++i){
+		ia->remove(i,0);
+	}
+
+	for(int i = 0; i < 9; ++i){
+		EXPECT_EQ(0,ia->access(i,0));
+	}
+
+	
+	for(int i = 0; i < 8; ++i){
+		da->insert(0,i,(i+.8));
+	}
+
+	for(int i = 0; i < 8; ++i){
+		da->remove(0,i);
+	}
+
+	for(int i = 0; i < 8; ++i){
+		EXPECT_EQ(0,da->access(0,i));
+	}
+	
+	for(int i = 0; i < 10; ++i){
+		sa->insert(i,0,"heyya oh oh");
+	}
+
+	for(int i = 0; i < 10; ++i){
+		sa->remove(i,0);
+	}
+
+	for(int i = 0; i < 10; ++i){
+		EXPECT_EQ("null",sa->access(i,0));
+	}
+}
+
 	
 TEST(Vector,numCols){
 	VectorTwoDArray<int>* ia = new VectorTwoDArray<int>(5,7,0);
@@ -239,4 +285,51 @@ TEST(Vector,insert){
 	EXPECT_EQ("hell",sa->access(0,4));
 	EXPECT_EQ("hello",sa->access(6,6));
 	EXPECT_EQ("Bob",sa->access(11,11));
-}	
+}
+
+	
+TEST(Vector,remove){	
+	
+	VectorTwoDArray<int>* ia = new VectorTwoDArray<int>(10,7,0);
+	VectorTwoDArray<double>* da = new VectorTwoDArray<double>(4,9,0.0);
+	VectorTwoDArray<std::string>* sa = 
+		new VectorTwoDArray<std::string>(12,12,"null");
+
+	for(int i = 0; i < 9; ++i){
+		ia->insert(i,0,i);
+	}
+
+	for(int i = 0; i < 9; ++i){
+		ia->remove(i,0);
+	}
+
+	for(int i = 0; i < 9; ++i){
+		EXPECT_EQ(0,ia->access(i,0));
+	}
+
+	
+	for(int i = 0; i < 8; ++i){
+		da->insert(0,i,(i+.8));
+	}
+
+	for(int i = 0; i < 8; ++i){
+		da->remove(0,i);
+	}
+
+	for(int i = 0; i < 8; ++i){
+		EXPECT_EQ(0,da->access(0,i));
+	}
+	
+	for(int i = 0; i < 10; ++i){
+		sa->insert(i,0,"heyya oh oh");
+	}
+
+	for(int i = 0; i < 10; ++i){
+		sa->remove(i,0);
+	}
+
+	for(int i = 0; i < 10; ++i){
+		EXPECT_EQ("null",sa->access(i,0));
+	}
+}
+
