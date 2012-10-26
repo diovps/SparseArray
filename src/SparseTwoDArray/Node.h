@@ -14,7 +14,6 @@ class Node{
 		Node<T>(T value,int row, int col);
 		~Node<T>();
 		T getValue();
-		void setValue(T val);
 		Node*& getNextRow();
 		Node*& getNextCol();
 		void setNextRow(Node<T>& n);

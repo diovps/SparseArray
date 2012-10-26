@@ -9,12 +9,14 @@ VectorTwoDArray<T>::VectorTwoDArray(int r, int c, T def){
 	numCols = c;
 	defaultVal = def;
 
+	
 	std::vector<T> columns;
 	columns.resize(c,def);
 
 	for(int i = 0; i < r; ++i){
 		theArray.push_back(columns);
 	}
+
 }
 
 template<typename T>
