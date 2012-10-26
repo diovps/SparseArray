@@ -1,6 +1,7 @@
 #include "VectorTwoDArray.h"
 #include <iostream>
 #include <assert.h>
+#include <iomanip>
 
 template<typename T>
 VectorTwoDArray<T>::VectorTwoDArray(int r, int c, T def){
@@ -48,7 +49,21 @@ void VectorTwoDArray<T>::remove(int r, int c){
 
 template<typename T>
 void VectorTwoDArray<T>::print(){
-	
+
+	std::cout << " ";
+	for(int i = 0; i < numCols; ++i){
+		std::cout << std::setw(4) << i << " ";
+	}	
+	std::cout << std::endl;
+
+	for(int i = 0; i < numRows; i++){
+		std::cout << i << " ";
+		for(int j = 0; j < numCols; j++){
+			std::cout << std::left <<"|"<<
+			  std::setw(3)<<std::right<<theArray[i][j] << " ";
+		}
+		std::cout << "|" << std::endl;
+	}
 }
 
 template<typename T>
