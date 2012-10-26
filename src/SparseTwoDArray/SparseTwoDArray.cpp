@@ -43,7 +43,9 @@ SparseTwoDArray<T>::~SparseTwoDArray(){
 	
 template<typename T>
 void SparseTwoDArray<T>::insert(int r, int c, T value){
-	
+	assert(r >= 0 && r < numRows);
+	assert(c >=0 && c < numCols);
+ 	
 	Node<T>* val= new Node<T>(value,r,c);
 	Node<T>** currCol = &rows[r];		
 	Node<T>** currRow = &cols[c];
@@ -73,6 +75,9 @@ void SparseTwoDArray<T>::insert(int r, int c, T value){
 
 template<typename T>
 T SparseTwoDArray<T>::access(int r, int c){
+	assert(r>=0 && r < numRows);
+	assert(c>=0 && c < numCols);
+
 	Node<T>** curr = &rows[r];
 	
 	while((*curr)!=0){
@@ -87,6 +92,8 @@ T SparseTwoDArray<T>::access(int r, int c){
 
 template<typename T>
 void SparseTwoDArray<T>::remove(int r, int c){
+	assert(r >=0 && r<numRows);
+	assert(c >=0 && c<numCols);
 	
 	Node<T>** currCol = &rows[r];
 	
