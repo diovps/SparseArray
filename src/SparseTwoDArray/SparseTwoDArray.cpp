@@ -57,7 +57,6 @@ void SparseTwoDArray<T>::insert(int r, int c, T value){
 	if(*currCol!=0 &&
 		(*currCol)->getColNum()==c && (*currCol)->getRowNum()==r){
 		
-		//(*currCol)->setValue(value);
 		*currCol = val;
 	}else{
 		val->setNextCol(**currCol);
@@ -115,11 +114,6 @@ void SparseTwoDArray<T>::remove(int r, int c){
 	delete (*currRow);
 	(*currRow) = nextRow;
 	(*currCol) = nextCol;
-	
-}
-
-template<typename T>
-void SparseTwoDArray<T>::print(){
 	
 }
 
